@@ -9,7 +9,7 @@ from langchain_groq import ChatGroq
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import FAISS
 
 from langchain_core.prompts import (
     ChatPromptTemplate,
@@ -76,9 +76,9 @@ def build_rag_chain(pdf_bytes):
     chunks = splitter.split_documents(documents)
 
     embeddings = get_embeddings()
-    vector_store = Chroma.from_documents(
-        documents=chunks,
-        embedding=embeddings,
+    vector_store = FAISS.from_documents(
+        chunks,
+        embeddings,
     )
 
     retriever = vector_store.as_retriever(search_kwargs={"k": 4})
