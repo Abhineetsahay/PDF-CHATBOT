@@ -12,3 +12,5 @@ pypdf
 huggingface-hub
 groq
 torchvision
+faiss-cpu
+protobuf==3.20.3
