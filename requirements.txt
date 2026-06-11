@@ -11,3 +11,4 @@ sentence-transformers
 pypdf
 huggingface-hub
 groq
+torchvision
